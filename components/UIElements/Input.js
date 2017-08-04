@@ -1,0 +1,24 @@
+import React, {Component} from 'react';
+import styled from 'styled-components';
+import classnames from 'classnames';
+
+const Input = styled.input`
+  padding: 5px 10px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  display: block;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+
+  &:focus{
+    outline: none !important;
+    border: 1px solid ${props => props.theme.color};
+  }
+  `;
+
+export default (props) =>
+  {
+    return (<Input {...props}/>)
+  };
