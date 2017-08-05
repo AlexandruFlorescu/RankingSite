@@ -174,6 +174,7 @@ class UserProfileContainer extends Component{
   }
 
   render(){
+    console.log(this.props.location);
     // console.log('UserProfileContainer:render');
     if(!this.props.dfp.authed.user_metadata)
       return <Callback></Callback>

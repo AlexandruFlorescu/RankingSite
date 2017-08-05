@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import classnames from 'classnames';
 
 const Button = styled.button`
-width:100%;
+width: 100%;
 color: ${props => props.theme.color};
 padding: 10px 20px;
 font-size: 16px;

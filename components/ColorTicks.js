@@ -64,7 +64,7 @@ class ColorTicks extends Component{
           <ColorTick color='green' onClick={()=>this.changeColor('green')}></ColorTick>
           <ColorTick color='brown' onClick={()=>this.changeColor('brown')}></ColorTick>
           <ColorTick color='orangered' onClick={()=>this.changeColor('orangered')}></ColorTick>
-          <ColorTick color='magenta' onClick={()=>this.changeColor('magenta')}></ColorTick>
+          <ColorTick color='palevioletred' onClick={()=>this.changeColor('palevioletred')}></ColorTick>
           <ColorTick color='indigo' onClick={()=>this.changeColor('indigo')}></ColorTick>
           <ColorTick color='black' onClick={()=>this.changeColor('black')}></ColorTick>
         </TicksTray>
@@ -75,3 +75,6 @@ class ColorTicks extends Component{
 }
 
 export default ColorTicks;
+
+
+//91DC5A green

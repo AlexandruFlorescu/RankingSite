@@ -4,8 +4,10 @@ import styled from 'styled-components'
 import { lighten } from 'polished'
 
 //internals
+import Modal from './Modal'
 import StrippedCard from './StrippedCard'
 import Button from './UIElements/Button'
+import ItemForm from './ItemForm'
 
 //SVGs
 import Role from '../assets/role.svg';
@@ -42,6 +44,7 @@ const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px 10px;
   `;
 const Divider = styled.div`
   width: 100%;
@@ -81,8 +84,22 @@ const Highlight = styled.span`
 
 class CategoryCard extends Component{
 
+  constructor() {
+    super();
+    this.state={
+      show: false
+    }
+  }
+
   delete() {
     this.props.delete(this.props.category);
+  }
+
+  show(){
+    this.setState({show:!this.state.show});
+  }
+
+  view() {
   }
 
   render(){
@@ -98,10 +115,23 @@ class CategoryCard extends Component{
             </UpperWrap>
             <Divider></Divider>
             <CardWrapper>
+              <Button onClick={this.view.bind(this)}>View rankings</Button>
+              <Button onClick={this.show.bind(this)}>Add Item</Button>
               <Button onClick={this.delete.bind(this)}>Delete</Button>
+              {this.state.show &&
+              <Modal
+                show={this.show.bind(this)}
+                color={this.props.color}>
+                  <ItemForm category={this.props.category}
+                            addItem={this.props.addItem}
+                            show={this.show.bind(this)}>
+
+                  </ItemForm>
+              </Modal>}
             </CardWrapper>
           </StrippedCard>
         )
   }
 }
 export default CategoryCard
+// <Button onClick={this.open.bind(this)}>MODAAAL</Button>

@@ -36,8 +36,11 @@ const checkJwt = jwt({
 })
 
 Categories = require('./models/category.js');
+Items = require('./models/item.js');
 mongoose.connect('mongodb://localhost/seastar');
 var db = mongoose.connection;
+
+//CATEGORIES
 
 app.get('/api/getCategories', checkJwt, function(req, res) {
   Categories.getCategories((err,category)=>{
@@ -66,6 +69,38 @@ app.post('/api/deleteCategory', checkJwt, function(req, res) {
       res.json(err);
     }
     res.json(category);
+  })
+})
+
+//ITEMS
+//checkJwt,
+app.get('/api/getItems',  function(req, res) {
+  Items.getItems((err,item)=>{
+    if(err){
+      throw err;
+      res.json(err);
+    }
+    res.json(item);
+  })
+})
+
+app.post('/api/setItem', checkJwt, function(req, res) {
+  Items.setItem(req.body, (err, item) => {
+    if(err){
+      throw err;
+      res.json(err);
+    }
+    res.json(item);
+  })
+})
+
+app.post('/api/deleteItems', checkJwt, function(req, res) {
+  Items.removeItems(req.body, (err, item) => {
+    if(err) {
+      throw err;
+      res.json(err);
+    }
+    res.json(item);
   })
 })
 

@@ -14,6 +14,7 @@ import UserProfileContainer from './UserProfileContainer'
 import ContactForm from './ContactForm'
 import CategoriesList from './CategoriesList'
 import CategoryForm from './CategoryForm'
+import ItemForm from './ItemForm'
 
 class Main extends Component{
   componentWillMount(){
@@ -51,6 +52,8 @@ class Main extends Component{
           <Route exact path="/categories">
             <CategoriesList
               categories = {this.props.categories}
+              color = {this.props.ui.color}
+              addItem = {this.props.actions.addItem}
               delete = {this.props.actions.deleteCategory}>
             </CategoriesList>
           </Route>
@@ -59,6 +62,12 @@ class Main extends Component{
               authed = {this.props.authed}
               addCategory = {this.props.actions.addCategory}>
             </CategoryForm>
+          </Route>
+          <Route exact path="/addItem">
+            <ItemForm
+              categories ={this.props.categories[0]}
+              addItem  ={this.props.actions.addItem}>
+            </ItemForm>
           </Route>
           <Route path="/callback" render={(props)=>{
               this.props.auth.handleAuthentication();

@@ -122,6 +122,57 @@ let actions = {
     }
   },
 
+//ITEEEEMS
+  initializeItems: function(){
+    return dispatch=>{
+      fetch('/api/getItems', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        }
+      }).then(resp=>resp.json())
+      .then(respJson => dispatch({type: c.INIT_ITEMS,
+                                  payload: respJson})
+            )
+    }
+  },
+
+  addItem: function(item){
+    return dispatch=>{
+      fetch('/api/setItem', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body: JSON.stringify(item)
+      }).then(resp => resp.json())
+      .then(respJson => dispatch({type: c.CREATE_ITEM,
+                                  payload: item})
+            )
+    }
+  },
+
+  deleteItem: function(item){
+    return dispatch=>{
+      fetch('/api/deleteItem', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body: JSON.stringify(item)
+      }).then(resp => resp.json())
+      .then(respJson => dispatch({type: c.DELETE_ITEM,
+                                  payload: item})
+            )
+    }
+  },
+
   // addUserToCrew: function(user, crew){
   //   console.log('addUserToCrew');
   //   return dispatch=>{
@@ -144,7 +195,8 @@ let actions = {
 
   changeColor: function(color){
     return {type: c.CHANGE_COLOR, payload: color};
-  }
+  },
+
 }
 
 export default actions;

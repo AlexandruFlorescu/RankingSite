@@ -5,7 +5,7 @@ import StrippedContainer from './UIElements/StrippedContainer';
 import Button from './UIElements/Button';
 import Header from './UIElements/Header';
 import Input from './UIElements/Input';
-import ColumnWrapper from './UIElements/ColumnWrapper'
+import ColumnWrapper from './UIElements/ColumnWrapper';
 
 const Label = styled.label`
   font-size: 135%;
@@ -47,12 +47,12 @@ class CategoryForm extends Component {
   constructor(props){
     super(props);
     this.state = {
+      score: 0,
       name:'',
       image:'',
       description:'',
-      private: false,
-      items_count: 0,
-      items: []
+      votes_count:0,
+      voted_by:[],
     }
   }
 
@@ -61,36 +61,31 @@ class CategoryForm extends Component {
   }
 
   componentWillMount(){
-    this.setState({owner: this.props.authed.user_id});
+    this.setState({category: this.props.category._id});
   }
 
   submit(){
-    this.props.addCategory(this.state);
+    this.props.addItem(this.state);
+    this.props.show();
+    console.log(this.state);
   }
 
   render(){
     // console.log(this.props.authed);
     return (
-          <StrippedContainer header="Add new category">
-              <ColumnWrapper>
-                <Label>Private?</Label>
-                <CheckBox
-                  name="private"
-                  type="checkbox"
-                  checked={this.state.isGoing}
-                  onChange={this.handleInputChange} />
-                <Label> Name: </Label>
-                <Input name="name" onChange={this.handleChange.bind(this)}/>
+            <ColumnWrapper>
+              <Label> Name: </Label>
+              <Input name="name" onChange={this.handleChange.bind(this)}/>
 
-                <Label> Image: </Label>
-                <Input name="image" onChange={this.handleChange.bind(this)}/>
+              <Label> Image: </Label>
+              <Input name="image" onChange={this.handleChange.bind(this)}/>
 
-                <Label> Description: </Label>
-                <TextArea name="description" onChange={this.handleChange.bind(this)}/>
+              <Label> Description: </Label>
+              <TextArea name="description" onChange={this.handleChange.bind(this)}/>
 
-                <Button onClick={this.submit.bind(this)}>Submit</Button>
-              </ColumnWrapper>
-          </StrippedContainer>
+              <Button onClick={this.submit.bind(this)}>Submit</Button>
+            </ColumnWrapper>
+
         )}
 }
 

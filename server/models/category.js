@@ -26,7 +26,7 @@ const categorySchema = mongoose.Schema({
       min: 0,
       default: 0,
     },
-    items: [mongoose.Schema.Types.ObjectId],
+    items: [''],
     create_date:{
       type: Date,
       default: Date.now
@@ -51,9 +51,9 @@ module.exports.findCategory = (category,callback) => {
   Category.find(category, callback);
 }
 
-module.exports.addCategory = (category, callback) => {
-  Category.create(category, callback);
-}
+// module.exports.addCategory = (category, callback) => {
+//   Category.create(category, callback);
+// }
 
 // module.exports.addUserToCrew = (user, crew, callback) => {
 //   Category.update({_id: crew._id}, {$set: {users:[]}}, callback  )

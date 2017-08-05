@@ -26,7 +26,12 @@ class CategoriesList extends Component{
     return (
       <DashboardWrapper>
           {this.props.categories.map( (category)=>
-            <CategoryCard key={this.props.categories.indexOf(category)} category={category} delete={this.props.delete}/> )}
+            <CategoryCard key={this.props.categories.indexOf(category)}
+                          category={category}
+                          color={this.props.color}
+                          addItem={this.props.addItem}
+                          delete={this.props.delete}
+                          /> )}
       </DashboardWrapper>
     )
   }

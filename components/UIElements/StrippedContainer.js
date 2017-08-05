@@ -22,10 +22,10 @@ border-radius: 5px;
 `;
 
 const StripHeader = styled.div`
-text-spacing: 0.22em;
-color: white;
-font-size: 175%;
-font-weight:500;
+  text-spacing: 0.22em;
+  color: white;
+  font-size: 175%;
+  font-weight:500;
 `;/* perhaps add this as header on the stripped line */
 export default (props) =>
   {
