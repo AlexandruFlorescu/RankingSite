@@ -15,6 +15,7 @@ import ContactForm from './ContactForm'
 import CategoriesList from './CategoriesList'
 import CategoryForm from './CategoryForm'
 import ItemForm from './ItemForm'
+import ItemsRank from './ItemsRank'
 
 class Main extends Component{
   componentWillMount(){
@@ -22,6 +23,9 @@ class Main extends Component{
       this.props.actions.initializeUsers();
     if(this.props.categories.length <= 0 && localStorage.getItem('manageToken'))
       this.props.actions.initializeCategories();
+    // console.log(this.props.items);
+    if(this.props.items.length <= 0 && localStorage.getItem('manageToken'))
+      this.props.actions.initializeItems();
     if(this.props.auth.isAuthenticated())
       {const { userProfile, getProfile } = this.props.auth;
       if (!userProfile) {
@@ -54,7 +58,8 @@ class Main extends Component{
               categories = {this.props.categories}
               color = {this.props.ui.color}
               addItem = {this.props.actions.addItem}
-              delete = {this.props.actions.deleteCategory}>
+              delete = {this.props.actions.deleteCategory}
+              router = {this.props.router}>
             </CategoriesList>
           </Route>
           <Route exact path="/addCategory">
@@ -65,9 +70,20 @@ class Main extends Component{
           </Route>
           <Route exact path="/addItem">
             <ItemForm
-              categories ={this.props.categories[0]}
+              categories ={this.props.categories}
               addItem  ={this.props.actions.addItem}>
             </ItemForm>
+          </Route>
+          <Route exact path="/getItems">
+            <ItemsRank
+              items = {this.props.items}
+              authed = {this.props.authed}
+              voteItem = {this.props.actions.voteItem}
+              deVoteItem = {this.props.actions.deVoteItem}
+              cleanItem = {this.props.actions.cleanItem}
+              category = {this.props.location.state && this.props.categories.find(cat =>cat._id === this.props.location.state.category)}
+              >
+            </ItemsRank>
           </Route>
           <Route path="/callback" render={(props)=>{
               this.props.auth.handleAuthentication();

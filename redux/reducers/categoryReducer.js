@@ -4,6 +4,9 @@ let crewReducer = function(categories=[], action){
 
   switch (action.type) {
 
+    case c.INIT_CATEGORIES:
+      return action.payload || categories;
+
     case c.CREATE_CATEGORY:
       return [{
           name: action.payload.name,
@@ -15,11 +18,8 @@ let crewReducer = function(categories=[], action){
           items_count: action.payload.items_count,
         }, ...categories];
 
-    case c.INIT_CATEGORIES:
-      return action.payload || categories;
-
     case c.DELETE_CATEGORY:
-      return categories.filter(item=>action.payload !== item);
+      return categories.filter(category=>action.payload !== category);
 
     // case c.CREATE_CATEGORY:
 

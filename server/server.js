@@ -104,6 +104,48 @@ app.post('/api/deleteItems', checkJwt, function(req, res) {
   })
 })
 
+app.post('/api/voteItem', checkJwt, function(req, res) {
+  Items.voteItem(req.body, (err, item) => {
+    if(err) {
+      throw err;
+      res.json(err);
+    }
+    // console.log(item);
+    res.json(item);
+  })
+})
+app.post('/api/devoteItem', checkJwt, function(req, res) {
+  Items.deVoteItem(req.body, (err, item) => {
+    if(err) {
+      throw err;
+      res.json(err);
+    }
+    // console.log(item);
+    res.json(item);
+  })
+})
+
+app.post('/api/cleanItem', checkJwt, function(req, res) {
+  Items.cleanItem(req.body, (err, item) => {
+    if(err) {
+      throw err;
+      res.json(err);
+    }
+    console.log(item);
+    res.json(item);
+  })
+
+})
+// app.post('/api/decrementItem', checkJwt, function(req, res) {
+//   Items.decrementItem(req.body, (err, item) => {
+//     if(err) {
+//       throw err;
+//       res.json(err);
+//     }
+//     res.json(item);
+//   })
+// })
+
 // app.post('/api/alterCrew', checkJwt, function(req, res){
 //
 //   Crews.addUserToCrew(req.body.user, req.body.crew, (err, crew) =>{

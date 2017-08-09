@@ -4,7 +4,7 @@ import userReducer from './userReducer'
 import authedReducer from './authedReducer'
 import uiReducer from './uiReducer'
 import categoryReducer from './categoryReducer'
-import modalReducer from './modalReducer'
+import itemsReducer from './itemsReducer'
 
 const rootReducer = combineReducers({
     users: userReducer,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     router: routerReducer,
     ui: uiReducer,
     categories: categoryReducer,
-    modal: modalReducer,
+    items: itemsReducer,
 })
 
 //authed: authedReducer,

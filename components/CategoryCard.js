@@ -2,12 +2,15 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import { lighten } from 'polished'
+// import {router} from 'react-router'
 
 //internals
 import Modal from './Modal'
 import StrippedCard from './StrippedCard'
 import Button from './UIElements/Button'
 import ItemForm from './ItemForm'
+import history from './history'
+
 
 //SVGs
 import Role from '../assets/role.svg';
@@ -100,6 +103,16 @@ class CategoryCard extends Component{
   }
 
   view() {
+    // this.props.router.push({
+    //     pathname: '/getItems',
+    //     query: { category: this.props.category._id }
+    //   })
+    // window.location = '/getItems/' + this.props.category._id;
+    // console.log(this.context.router);
+    history.push({
+        pathname: '/getItems',
+        state: { category: this.props.category._id }
+      })
   }
 
   render(){

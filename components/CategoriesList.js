@@ -31,6 +31,7 @@ class CategoriesList extends Component{
                           color={this.props.color}
                           addItem={this.props.addItem}
                           delete={this.props.delete}
+                          router = {this.props.router}
                           /> )}
       </DashboardWrapper>
     )

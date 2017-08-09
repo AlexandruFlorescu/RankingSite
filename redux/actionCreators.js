@@ -1,4 +1,6 @@
 var c = require('./constants.js')
+var c = require('./constants.js')
+var c = require('./constants.js')
 
 let actions = {
   initializeUsers: function() {
@@ -172,6 +174,68 @@ let actions = {
             )
     }
   },
+
+  voteItem: function(item, userId, score){
+    return dispatch => {
+      fetch('/api/voteItem', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body: JSON.stringify({item: item, userId: userId, score: score})
+      })
+    dispatch({type: c.VOTE_ITEM,
+            payload: {item: item, userId: userId, score: score}});
+          }
+  },
+  deVoteItem: function(item, vote){
+    return dispatch => {
+      fetch('/api/devoteItem', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body: JSON.stringify({item: item, vote: vote})
+      })
+    dispatch({type: c.DEVOTE_ITEM,
+            payload: {item: item, vote: vote}});
+          }
+  },
+  cleanItem: function(item, userId, score){
+    return dispatch => {
+      fetch('/api/cleanItem', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body: JSON.stringify({item: item, userId: userId, score: score})
+      })
+    // dispatch({type: c.VOTE_ITEM,
+    //         payload: {item: item, userId: userId, score: score}});
+          }
+  },
+
+  // decrementItem: function(item, userId){
+  //   return dispatch => {
+  //     fetch('/api/decrementItem', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'Authorization': localStorage.getItem('manageToken'),
+  //       },
+  //       body: JSON.stringify({item: item, userId: userId})
+  //     });
+  //   dispatch({type: c.DECREMENT_ITEM,
+  //           payload: item})
+  //         }
+  // },
 
   // addUserToCrew: function(user, crew){
   //   console.log('addUserToCrew');

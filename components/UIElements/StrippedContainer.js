@@ -10,6 +10,13 @@ display: inline;
 background-color: white;
 box-shadow: 0px 5px 5px 3px rgba(0,0,0,0.3);
 border-radius: 5px;
+overflow-y: auto;
+
+  &:webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  	border-radius: 10px;
+  	background-color: red;
+  }
 
 > .upperStrip{
   height: 18.14vh;
