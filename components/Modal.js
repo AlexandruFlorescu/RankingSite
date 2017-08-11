@@ -28,7 +28,6 @@ const Wrapper = styled.div`
   border-radius: 3px;
   box-shadow: 0px 5px 5px 3px rgba(0,0,0,0.3);
 
-
   > .upperStrip{
     height: 18.14vh;
     width: 100%;
@@ -65,7 +64,6 @@ class Modal extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // If isActive prop is true, set the className to 'modal is-active'
     if (nextProps.isActive !== this.props.isActive) {
       this.modalTarget.className = nextProps.isActive ?
         'modal is-active'
