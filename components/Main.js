@@ -56,10 +56,12 @@ class Main extends Component{
           <Route exact path="/categories">
             <CategoriesList
               categories = {this.props.categories}
+              items = {this.props.items}
               color = {this.props.ui.color}
               addItem = {this.props.actions.addItem}
               delete = {this.props.actions.deleteCategory}
-              router = {this.props.router}>
+              router = {this.props.router}
+              users={this.props.users}>
             </CategoriesList>
           </Route>
           <Route exact path="/addCategory">

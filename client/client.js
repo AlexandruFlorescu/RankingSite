@@ -8,7 +8,7 @@ import history from '../components/history.js'
 let initialState = {
   users:[],
   authed: {},
-  ui:{color:'green'},
+  ui:{color:'DarkGoldenRod'},
 }
 
 ///test

@@ -42,9 +42,6 @@ const Wrapper = styled.div`
     color: white;
   }
 
-  &:hover div div {
-    box-shadow: 0px 0px 0px 1px grey;
-  }
   `;
 
 class ColorTicks extends Component{
@@ -60,13 +57,13 @@ class ColorTicks extends Component{
     return (
       <Wrapper>
         <TicksTray>
-          <ColorTick color='blue' onClick={()=>this.changeColor('blue')}></ColorTick>
-          <ColorTick color='green' onClick={()=>this.changeColor('green')}></ColorTick>
-          <ColorTick color='brown' onClick={()=>this.changeColor('brown')}></ColorTick>
+          <ColorTick color='DarkGoldenRod' onClick={()=>this.changeColor('DarkGoldenRod')}></ColorTick>
           <ColorTick color='orangered' onClick={()=>this.changeColor('orangered')}></ColorTick>
+          <ColorTick color='brown' onClick={()=>this.changeColor('brown')}></ColorTick>
           <ColorTick color='palevioletred' onClick={()=>this.changeColor('palevioletred')}></ColorTick>
+          <ColorTick color='green' onClick={()=>this.changeColor('green')}></ColorTick>
+          <ColorTick color='blue' onClick={()=>this.changeColor('blue')}></ColorTick>
           <ColorTick color='indigo' onClick={()=>this.changeColor('indigo')}></ColorTick>
-          <ColorTick color='black' onClick={()=>this.changeColor('black')}></ColorTick>
         </TicksTray>
         <Header>Color?</Header>
       </Wrapper>

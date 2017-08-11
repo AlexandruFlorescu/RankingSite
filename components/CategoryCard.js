@@ -87,6 +87,7 @@ const Highlight = styled.span`
 
 class CategoryCard extends Component{
 
+  res=0;
   constructor() {
     super();
     this.state={
@@ -117,13 +118,15 @@ class CategoryCard extends Component{
 
   render(){
     // console.log(this.props.delete);
+    this.res = 0;
+    this.props.items.forEach(item=>{if(item.category == this.props.category._id) this.res++;})
       return (
-          <StrippedCard header={this.props.category.name}>
+        <StrippedCard header={this.props.category.name}>
             <UpperWrap>
               <Img src={this.props.category.image}></Img>
               <RightWrap>
-                <Header> <Label background={Honor}> Creator:</Label> <Highlight>{this.props.category.owner}</Highlight> </Header>
-                <Header> <Label background={Reputation}> #Items:</Label> <Highlight>{this.props.category.items_count}</Highlight></Header>
+                <Header> <Label background={Honor}> Creator:</Label> <Highlight>{this.props.users.find(user=>user.user_id == this.props.category.owner).nickname}</Highlight> </Header>
+                <Header> <Label background={Reputation}> #Items:</Label> <Highlight>{ this.res }</Highlight></Header>
               </RightWrap>
             </UpperWrap>
             <Divider></Divider>

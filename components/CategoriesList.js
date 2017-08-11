@@ -28,10 +28,12 @@ class CategoriesList extends Component{
           {this.props.categories.map( (category)=>
             <CategoryCard key={this.props.categories.indexOf(category)}
                           category={category}
+                          items = {this.props.items}
                           color={this.props.color}
                           addItem={this.props.addItem}
                           delete={this.props.delete}
                           router = {this.props.router}
+                          users={this.props.users}
                           /> )}
       </DashboardWrapper>
     )
