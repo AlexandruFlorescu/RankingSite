@@ -61,7 +61,9 @@ class Main extends Component{
               addItem = {this.props.actions.addItem}
               delete = {this.props.actions.deleteCategory}
               router = {this.props.router}
-              users={this.props.users}>
+              users={this.props.users}
+              authed = {this.props.authed}
+              addCategory = {this.props.actions.addCategory}>
             </CategoriesList>
           </Route>
           <Route exact path="/addCategory">
@@ -83,6 +85,7 @@ class Main extends Component{
               voteItem = {this.props.actions.voteItem}
               deVoteItem = {this.props.actions.deVoteItem}
               cleanItem = {this.props.actions.cleanItem}
+              deleteItem = {this.props.actions.deleteItem}
               category = {this.props.location.state && this.props.categories.find(cat =>cat._id === this.props.location.state.category)}
               >
             </ItemsRank>

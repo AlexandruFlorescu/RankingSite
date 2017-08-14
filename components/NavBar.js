@@ -57,7 +57,7 @@ class NavBar extends Component{
         {this.props.auth.isAuthenticated() ? <MyLink to='#'><NavButton background={Login} onClick={this.logOut.bind(this)}> Logoff </NavButton> </MyLink>
       : <MyLink to='#'><NavButton background={Login} onClick={this.logIn.bind(this)}> Login </NavButton> </MyLink> }
       <Divider></Divider>
-        <MyLink to='/addCategory'><NavButton background={Contact}> +Category </NavButton> </MyLink>
+        <MyLink to='/getItems'><NavButton background={Contact}> All Items </NavButton> </MyLink>
       <Divider></Divider>
         <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
     </NavWrapper>

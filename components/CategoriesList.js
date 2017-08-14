@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 //internals
 import CategoryCard from './CategoryCard'
+import AddCategory from './AddCategory'
 
 //stuff I should have declared someplace else
 const DashboardWrapper= styled.div`
@@ -22,9 +23,11 @@ class CategoriesList extends Component{
   }
 
   render(){
-    console.log(this.props.delete);
+    console.log(this.props.authed);
     return (
       <DashboardWrapper>
+          <AddCategory
+          authed= {this.props.authed} color={this.props.color} addCategory = {this.props.addCategory}></AddCategory>
           {this.props.categories.map( (category)=>
             <CategoryCard key={this.props.categories.indexOf(category)}
                           category={category}

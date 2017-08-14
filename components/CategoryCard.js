@@ -137,7 +137,8 @@ class CategoryCard extends Component{
               {this.state.show &&
               <Modal
                 show={this.show.bind(this)}
-                color={this.props.color}>
+                color={this.props.color}
+                header={'Add new item in ' + this.props.category.name}>
                   <ItemForm category={this.props.category}
                             addItem={this.props.addItem}
                             show={this.show.bind(this)}>

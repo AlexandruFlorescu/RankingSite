@@ -49,6 +49,7 @@ class CategoryForm extends Component {
     this.state = {
       score: 0,
       name:'',
+      author: '',
       image:'',
       description:'',
       votes_count:0,
@@ -76,6 +77,9 @@ class CategoryForm extends Component {
             <ColumnWrapper>
               <Label> Name: </Label>
               <Input name="name" onChange={this.handleChange.bind(this)}/>
+
+              <Label> Author: </Label>
+              <Input name="author" onChange={this.handleChange.bind(this)}/>
 
               <Label> Image: </Label>
               <Input name="image" onChange={this.handleChange.bind(this)}/>

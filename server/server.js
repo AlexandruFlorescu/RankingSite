@@ -94,8 +94,9 @@ app.post('/api/setItem', checkJwt, function(req, res) {
   })
 })
 
-app.post('/api/deleteItems', checkJwt, function(req, res) {
-  Items.removeItems(req.body, (err, item) => {
+app.post('/api/deleteItem', checkJwt, function(req, res) {
+  console.log(req.body);
+  Items.removeItem(req.body, (err, item) => {
     if(err) {
       throw err;
       res.json(err);

@@ -52,6 +52,7 @@ const StripHeader = styled.h1`
   font-size: 175%;
   font-weight:500;
   text-align: center;
+  text-transform: capitalize;
   `;
 
 class Modal extends React.Component {
@@ -88,7 +89,7 @@ class Modal extends React.Component {
           <Overlay>
             <Wrapper>
               <div className="upperStrip">
-                <StripHeader> Add new Item </StripHeader>
+                <StripHeader> {this.props.header} </StripHeader>
                 <X onClick={this.props.show} src={Cancel}/>
               </div>
               {this.props.children}

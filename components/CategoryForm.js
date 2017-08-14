@@ -66,12 +66,12 @@ class CategoryForm extends Component {
 
   submit(){
     this.props.addCategory(this.state);
+    this.props.show();
   }
 
   render(){
     // console.log(this.props.authed);
     return (
-          <StrippedContainer header="Add new category">
               <ColumnWrapper>
                 <Label>Private?</Label>
                 <CheckBox
@@ -90,7 +90,6 @@ class CategoryForm extends Component {
 
                 <Button onClick={this.submit.bind(this)}>Submit</Button>
               </ColumnWrapper>
-          </StrippedContainer>
         )}
 }
 

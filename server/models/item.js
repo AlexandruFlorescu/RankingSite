@@ -13,6 +13,11 @@ const itemSchema = mongoose.Schema({
       required: true,
       index: {unique: true}
     },
+    author: {
+      type: String,
+      required: true,
+      index: {unique: true}
+    },
     image:{
       type: String,
       default: './../assets/matthew.png',

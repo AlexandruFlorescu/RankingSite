@@ -26,9 +26,6 @@ import Sign from './UIElements/Sign'
 // &:nth-child(2n+1){
 //   background: ${props=>lighten(0.4,props.theme.color)};
 // }
-// &:nth-child(2n+2){
-//   background: ${props=>lighten(0.6,props.theme.color)};
-// }
 // &:hover button::hover {
 //   color: red;
 //   box-shadow: 0px 1px 1px 5px rgba(255,255,255,.3);
@@ -107,6 +104,10 @@ class ItemsRank extends Component{
         this.props.voteItem(item, this.props.authed.user_id, -1);
   }
 
+  deleteItem(item){
+    this.props.deleteItem(item);
+  }
+
   render(){
     console.log(this.props.category);
     this.i=0;
@@ -133,7 +134,9 @@ class ItemsRank extends Component{
                           </Td>
                         <Td><SImg src={item.image}/></Td>
                         <Td className="cap">{item.name}</Td>
+                        <Td className="cap">{item.author}</Td>
                         <Td>{item.description}</Td>
+                        <Td><Sign onClick={this.deleteItem.bind(this, item)}>D</Sign></Td>
                       </Tr>
                    ]
                       )}
