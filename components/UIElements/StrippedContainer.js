@@ -19,6 +19,7 @@ const StrippedContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.5s ease-out;
 }
 `;
 

@@ -5,6 +5,7 @@ import authedReducer from './authedReducer'
 import uiReducer from './uiReducer'
 import categoryReducer from './categoryReducer'
 import itemsReducer from './itemsReducer'
+import postsReducer from './postReducer'
 
 const rootReducer = combineReducers({
     users: userReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     ui: uiReducer,
     categories: categoryReducer,
     items: itemsReducer,
+    posts: postsReducer,
 })
 
 //authed: authedReducer,

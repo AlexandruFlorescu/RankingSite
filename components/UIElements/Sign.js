@@ -13,6 +13,7 @@ const Sign = styled.button`
   color: white;
   transition: all ease-in-out 0.1s;
   font-size: 20;
+  box-shadow: 0px 1px 1px 1px rgba(0,0,0,.3);
 
   &:hover{
     outline: none !important;

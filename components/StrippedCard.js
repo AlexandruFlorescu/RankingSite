@@ -26,6 +26,7 @@ export default (props) =>
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: background-color 0.5s ease-out;
       }
       `;
     const StripHeader = styled.div`

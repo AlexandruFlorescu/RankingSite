@@ -37,6 +37,7 @@ const checkJwt = jwt({
 
 Categories = require('./models/category.js');
 Items = require('./models/item.js');
+Posts = require('./models/post.js');
 mongoose.connect('mongodb://localhost/seastar');
 var db = mongoose.connection;
 
@@ -74,7 +75,7 @@ app.post('/api/deleteCategory', checkJwt, function(req, res) {
 
 //ITEMS
 //checkJwt,
-app.get('/api/getItems',  function(req, res) {
+app.get('/api/getItems', checkJwt,  function(req, res) {
   Items.getItems((err,item)=>{
     if(err){
       throw err;
@@ -83,7 +84,6 @@ app.get('/api/getItems',  function(req, res) {
     res.json(item);
   })
 })
-
 app.post('/api/setItem', checkJwt, function(req, res) {
   Items.setItem(req.body, (err, item) => {
     if(err){
@@ -93,7 +93,6 @@ app.post('/api/setItem', checkJwt, function(req, res) {
     res.json(item);
   })
 })
-
 app.post('/api/deleteItem', checkJwt, function(req, res) {
   console.log(req.body);
   Items.removeItem(req.body, (err, item) => {
@@ -104,7 +103,6 @@ app.post('/api/deleteItem', checkJwt, function(req, res) {
     res.json(item);
   })
 })
-
 app.post('/api/voteItem', checkJwt, function(req, res) {
   Items.voteItem(req.body, (err, item) => {
     if(err) {
@@ -125,7 +123,6 @@ app.post('/api/devoteItem', checkJwt, function(req, res) {
     res.json(item);
   })
 })
-
 app.post('/api/cleanItem', checkJwt, function(req, res) {
   Items.cleanItem(req.body, (err, item) => {
     if(err) {
@@ -135,17 +132,36 @@ app.post('/api/cleanItem', checkJwt, function(req, res) {
     console.log(item);
     res.json(item);
   })
-
 })
-// app.post('/api/decrementItem', checkJwt, function(req, res) {
-//   Items.decrementItem(req.body, (err, item) => {
-//     if(err) {
-//       throw err;
-//       res.json(err);
-//     }
-//     res.json(item);
-//   })
-// })
+
+//POSTS
+app.get('/api/getPosts', checkJwt,  function(req, res) {
+  Posts.getPosts((err,posts)=>{
+    if(err){
+      throw err;
+      res.json(err);
+    }
+    res.json(posts);
+  })
+})
+app.post('/api/setPost', checkJwt, function(req, res) {
+  Posts.setPost(req.body, (err, post) => {
+    if(err) {
+      throw err;
+      res.json(err);
+    }
+    res.json(post);
+  })
+})
+app.post('/api/deletePost', checkJwt, function(req, res) {
+  Posts.removePost(req.body, (err, post) => {
+    if(err) {
+      throw err;
+      res.json(err);
+    }
+    res.json(post);
+  })
+})
 
 // app.post('/api/alterCrew', checkJwt, function(req, res){
 //

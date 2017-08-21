@@ -1,8 +1,7 @@
 var c = require('./constants.js')
-var c = require('./constants.js')
-var c = require('./constants.js')
 
 let actions = {
+//USERS
   initializeUsers: function() {
     // console.log(localStorage.getItem('manageToken'));
     return dispatch =>{
@@ -72,7 +71,7 @@ let actions = {
   logOff: function(){
     return {type: c.LOG_OFF, payload: {}};
   },
-
+//CATEGORIES
   initializeCategories: function(){
     // console.log('initializeCrews')
     return dispatch=>{
@@ -89,7 +88,6 @@ let actions = {
             )
     }
   },
-
   addCategory: function(category){
     return dispatch=>{
       fetch('/api/setCategories', {
@@ -106,7 +104,6 @@ let actions = {
             )
     }
   },
-
   deleteCategory: function(category){
     return dispatch=>{
       fetch('/api/deleteCategory', {
@@ -123,7 +120,6 @@ let actions = {
             )
     }
   },
-
 //ITEEEEMS
   initializeItems: function(){
     return dispatch=>{
@@ -140,7 +136,6 @@ let actions = {
             )
     }
   },
-
   addItem: function(item){
     return dispatch=>{
       fetch('/api/setItem', {
@@ -157,7 +152,6 @@ let actions = {
             )
     }
   },
-
   deleteItem: function(item){
     return dispatch=>{
       fetch('/api/deleteItem', {
@@ -174,7 +168,6 @@ let actions = {
             )
     }
   },
-
   voteItem: function(item, userId, score){
     return dispatch => {
       fetch('/api/voteItem', {
@@ -220,7 +213,58 @@ let actions = {
     //         payload: {item: item, userId: userId, score: score}});
           }
   },
-
+//POSTS
+  initializePosts: function(){
+    return dispatch=>{
+      fetch('/api/getPosts', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        }
+      }).then(resp=>resp.json())
+      .then(respJson => dispatch({type: c.INIT_POSTS,
+                                  payload: respJson})
+            )
+    }
+  },
+  addPost: function(post){
+    return dispatch=>{
+      console.log(post);
+      fetch('/api/setPost', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body: JSON.stringify(post)
+      }).then(resp => resp.json())
+      .then(respJson => dispatch({type: c.ADD_POST,
+                                  payload: post})
+            )
+    }
+  },
+  deletePost: function(post){
+    return dispatch=>{
+      fetch('/api/deletePost', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body: JSON.stringify(post)
+      }).then(resp => resp.json())
+      .then(respJson => dispatch({type: c.DELETE_POST,
+                                  payload: post})
+            )
+    }
+  },
+  changeColor: function(color){
+    return {type: c.CHANGE_COLOR, payload: color};
+  },
   // decrementItem: function(item, userId){
   //   return dispatch => {
   //     fetch('/api/decrementItem', {
@@ -236,7 +280,6 @@ let actions = {
   //           payload: item})
   //         }
   // },
-
   // addUserToCrew: function(user, crew){
   //   console.log('addUserToCrew');
   //   return dispatch=>{
@@ -256,11 +299,6 @@ let actions = {
   //           )
   //   }
   // },
-
-  changeColor: function(color){
-    return {type: c.CHANGE_COLOR, payload: color};
-  },
-
 }
 
 export default actions;

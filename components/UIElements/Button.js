@@ -13,10 +13,10 @@ border-radius: 7px;
 border: 1px solid ${props => props.theme.color};
 background-color: white;
 margin-top: 5px;
-box-shadow: 0px 17px 10px -10px rgba(0,0,0,.33);
 transition-property: background-color;
 transition-duration: 0.5s;
 transition-timing-function: ease-out;
+box-shadow: 0px 2px 3px 3px rgba(0,0,0,0.3);
 
 &:hover {
   background-color: ${props => props.theme.color};
@@ -29,6 +29,7 @@ transition-timing-function: ease-out;
   box-shadow: inset 1px 1px 3px 2px rgba(0, 0, 0, .3);
 }
 `;
+// box-shadow: 0px 17px 10px -10px rgba(0,0,0,.33);
 export default (props) =>
   {
     return (<Button {...props}>{props.children}</Button>)

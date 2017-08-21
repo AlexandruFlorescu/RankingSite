@@ -26,6 +26,8 @@ class Main extends Component{
     // console.log(this.props.items);
     if(this.props.items.length <= 0 && localStorage.getItem('manageToken'))
       this.props.actions.initializeItems();
+    if(this.props.posts.length <= 0 && localStorage.getItem('manageToken'))
+      this.props.actions.initializePosts();
     if(this.props.auth.isAuthenticated())
       {const { userProfile, getProfile } = this.props.auth;
       if (!userProfile) {
@@ -80,13 +82,17 @@ class Main extends Component{
           </Route>
           <Route exact path="/getItems">
             <ItemsRank
-              items = {this.props.items}
               authed = {this.props.authed}
+              category = {this.props.location.state && this.props.categories.find(cat =>cat._id === this.props.location.state.category)}
+              users={this.props.users}
+              items = {this.props.items}
               voteItem = {this.props.actions.voteItem}
               deVoteItem = {this.props.actions.deVoteItem}
               cleanItem = {this.props.actions.cleanItem}
               deleteItem = {this.props.actions.deleteItem}
-              category = {this.props.location.state && this.props.categories.find(cat =>cat._id === this.props.location.state.category)}
+              posts ={this.props.posts}
+              addPost = {this.props.actions.addPost}
+              deletePost = {this.props.actions.deletePost}
               >
             </ItemsRank>
           </Route>
