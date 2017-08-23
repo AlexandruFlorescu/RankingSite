@@ -35,6 +35,7 @@ class CategoriesList extends Component{
                           color={this.props.color}
                           addItem={this.props.addItem}
                           delete={this.props.delete}
+                          deleteItem = {this.props.deleteItem}
                           router = {this.props.router}
                           users={this.props.users}
                           /> )}

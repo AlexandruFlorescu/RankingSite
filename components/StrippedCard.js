@@ -18,6 +18,8 @@ export default (props) =>
       &:hover{
         box-shadow: 0px 8px 8px 5px rgba(0,0,0,.3);
         transform: scale(1.1);
+        z-index: 3000;
+
       }
       > .upperStrip{
       height: 60px;

@@ -97,6 +97,7 @@ class CategoryCard extends Component{
 
   delete() {
     this.props.delete(this.props.category);
+    this.props.items.forEach(item => {if(item.category==this.props.category._id) this.props.deleteItem(item)} );
   }
 
   show(){

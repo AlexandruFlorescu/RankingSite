@@ -118,6 +118,17 @@ let actions = {
       .then(respJson => dispatch({type: c.DELETE_CATEGORY,
                                   payload: category})
             )
+
+      // fetch('/api/clearCategory', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json',
+      //     'Authorization': localStorage.getItem('manageToken'),
+      //   },
+      //   body: JSON.stringify(category)
+      // }).then(resp => resp.json())
+      // .then(respJson => console.log(respJson));
     }
   },
 //ITEEEEMS

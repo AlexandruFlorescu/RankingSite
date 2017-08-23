@@ -42,7 +42,6 @@ mongoose.connect('mongodb://localhost/seastar');
 var db = mongoose.connection;
 
 //CATEGORIES
-
 app.get('/api/getCategories', checkJwt, function(req, res) {
   Categories.getCategories((err,category)=>{
     if(err){
@@ -70,11 +69,23 @@ app.post('/api/deleteCategory', checkJwt, function(req, res) {
       res.json(err);
     }
     res.json(category);
+
+    });
+})
+
+app.post('/api/clearCategory', checkJwt, function(req, res) {
+  console.log(req.body._id);
+  Items.removeItems(req.body._id, (err, item) => {
+    if(err){
+      throw err;
+      res.json(err);
+    }
+    res.json(item);
   })
 })
 
+
 //ITEMS
-//checkJwt,
 app.get('/api/getItems', checkJwt,  function(req, res) {
   Items.getItems((err,item)=>{
     if(err){

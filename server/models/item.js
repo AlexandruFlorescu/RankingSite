@@ -50,7 +50,10 @@ module.exports.setItem = (item, callback) => {
 }
 
 module.exports.removeItem = (item, callback) => {
-  Item.remove(item, callback);
+  Item.remove({_id: item._id}, callback);
+}
+module.exports.removeItems = (cat_id, callback) =>{
+  Item.find({category: cat_id}).remove( callback);
 }
 
 module.exports.findItem = (item,callback) => {
@@ -64,7 +67,8 @@ module.exports.cleanItem = (payload,callback) => {
 module.exports.voteItem = (payload,callback) => {
   // Item.find(payload.item._id, callback);
   // if()
-  Item.update({_id : payload.item}, {$inc: {score: payload.score, votes_count: 1}, $push: {voted_by: payload.userId, votes: {user: payload.userId, score:payload.score}}}, callback);
+  Item.update({_id : payload.item}, {$inc: {score: payload.score, votes_count: 1},
+                                      $push: {voted_by: payload.userId, votes: {user: payload.userId, score:payload.score}}}, callback);
   // else
     // Item.update(payload.item, {$inc: {score: payload.score}, $push: {voted_by: payload.userId}}, callback);
   // Item.update(payload.item, {$inc: {score: payload.score}, $push: {voted_by: payload.userId}, $pushAll: {votes: [{user: payload.userId, score:payload.score}] }}, callback);

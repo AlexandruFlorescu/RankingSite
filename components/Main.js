@@ -62,6 +62,7 @@ class Main extends Component{
               color = {this.props.ui.color}
               addItem = {this.props.actions.addItem}
               delete = {this.props.actions.deleteCategory}
+              deleteItem = {this.props.actions.deleteItem}
               router = {this.props.router}
               users={this.props.users}
               authed = {this.props.authed}

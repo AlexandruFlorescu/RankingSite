@@ -14,6 +14,12 @@ const CommentsWrapper = styled.div`
   flex-direction: column;
   margin: -1px;
   background-color: white;
+  transform: scaleY(0);
+  transform-origin:top;
+  transition: transform 5s linear;
+  &#expanded{
+    transform: scaleY(1);
+  }
 `;
 // background-color: ${props=> props.theme.color};
 
@@ -31,26 +37,28 @@ const Line = styled.div`
   justify-content: center;
   border-top: 5px solid ${props=> props.theme.color};
   &:hover{
-    background-color: ${props=> props.theme.color};
+    background-color: ${props=> lighten(0.1,props.theme.color)};
     color: white;
   }
 `;
 
 const CommentAndActions = styled.div`
-  height: 100%;
   display: flex;
   padding-top: 15px;
+  padding-bottom: 15px;
   justify-content: center;
+  height: fit-content;
 `;
 
 const Comment = styled.div`
   margin-top: 3px;
   padding-left: 5px;
   padding-bottom: 5px;
+  height: fit-content;
 `;
 const TextArea = styled.textarea`
   height: 20vh;
-  width: 50vw;
+  width: 60vw;
   margin-bottom: 5px;
   resize: none;
   border-radius: 3px;
@@ -63,7 +71,6 @@ const TextArea = styled.textarea`
   &:selection{
     background-color: ${props => props.theme.color};
   }
-
 `;
 
 const Img = styled.img`
@@ -72,7 +79,7 @@ const Img = styled.img`
 
 const Profile = styled.div`
   padding: 0px 3px;
-  
+
   float: left;
   background-color: ${props=> props.theme.color};
   color: white;
@@ -83,7 +90,7 @@ const Profile = styled.div`
 `;
 
 const Form = styled.div`
-  padding: 5px;
+  padding: 15px;
 `;
 
 class CommentsSection extends Component{
@@ -103,7 +110,7 @@ class CommentsSection extends Component{
   }
 
   render() {
-    return <CommentsWrapper>
+    return <CommentsWrapper id={this.props.id}>
       {this.props.posts.map(post=>{
         let user = this.props.users.find(user=>user.user_id == post.writer);
         return <Line>
@@ -117,18 +124,18 @@ class CommentsSection extends Component{
                   <Sign onClick={this.delete.bind(this, post)}>D</Sign>
                 </CommentAndActions>
               </Line> })}
-              <Line>
-                <Profile>
-                  <Img src={this.props.authed.picture} />
-                  <br/>
-                  {this.props.authed.nickname}
-                </Profile>
-                <Form>
-                  <TextArea value={this.state.comment} onChange={this.handleChange.bind(this)}/>
-                  <Button onClick={this.props.postComment.bind(this, this.props.item, this.state.comment)}> POST </Button>
-                </Form>
-              </Line>
-          </CommentsWrapper>;
+          <Line>
+            <Profile>
+              <Img src={this.props.authed.picture} />
+              <br/>
+              {this.props.authed.nickname}
+            </Profile>
+            <Form>
+              <TextArea value={this.state.comment} onChange={this.handleChange.bind(this)}/>
+              <Button onClick={this.props.postComment.bind(this, this.props.item, this.state.comment)}> POST </Button>
+            </Form>
+          </Line>
+        </CommentsWrapper>;
   }
 }
 
