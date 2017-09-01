@@ -44,6 +44,13 @@ const CardWrapper = styled.div`
       transform: scale(1.1) translate(-13px, -13px);
     }
   }
+  & #Locked {
+    fill: black;
+    transition: all ease-in-out 0.3s;
+    &:hover{
+      transform: scale(1.1) translate(-13px, -13px);
+    }
+  }
 
   }
   `;
@@ -59,11 +66,11 @@ class AddCard extends Component{
   }
   render(){
     console.log(this.props.authed);
-    if(this.props.authed) return (
+    if(this.props.authed.user_id) return (
       <StrippedCard header='Add new category'>
         <CardWrapper>
           <div id="svgWrapper">
-            <svg width="150px" height="150px" viewBox="-50 -50 400 400" version="1.1" onClick={this.show.bind(this)} >
+            <svg width="150px" height="150px" viewBox="-50 -50 400 400" version="1.1" onClick={this.props.authed.user_id && this.show.bind(this)} >
               <defs>
                   <filter x="-2.4%" y="-1.7%" width="104.7%" height="105.1%" filterUnits="objectBoundingBox" id="filter-1">
                       <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
@@ -84,7 +91,7 @@ class AddCard extends Component{
               </defs>
               <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                   <g id="plus" filter="url(#filter-1)" transform="translate(4.000000, 2.000000)" fillRule="nonzero">
-                      <path d="M108.388,297 C105.772,297.002 103.262,295.962 101.411,294.112 C99.562,292.261 98.522,289.753 98.522,287.135 L98.536,198.482 L9.915,198.494 C7.299,198.494 4.79,197.456 2.939,195.606 C1.088,193.756 0.05,191.248 0.05,188.629 L0.064,108.407 C0.065,102.962 4.479,98.547 9.925,98.547 L98.551,98.533 L98.567,9.871 C98.568,4.426 102.982,0.013 108.427,0.011 L188.616,0 C191.233,0 193.742,1.038 195.593,2.888 C197.443,4.739 198.481,7.247 198.481,9.865 L198.468,98.52 L287.085,98.508 C289.701,98.508 292.21,99.546 294.061,101.395 C295.912,103.247 296.95,105.754 296.95,108.371 L296.938,188.591 C296.937,194.036 292.523,198.451 287.078,198.451 L198.449,198.467 L198.435,287.125 C198.434,292.57 194.02,296.985 188.575,296.985 L108.388,297 Z" id="Shape"></path>
+                      <path d="M108.388,297 C105.772,297.002 103.262,295.962 101.411,294.112 C99.562,292.261 98.522,289.753 98.522,287.135 L98.536,198.482 L9.915,198.494 C7.299,198.494 4.79,197.456 2.939,195.606 C1.088,193.756 0.05,191.248 0.05,188.629 L0.064,108.407 C0.065,102.962 4.479,98.547 9.925,98.547 L98.551,98.533 L98.567,9.871 C98.568,4.426 102.982,0.013 108.427,0.011 L188.616,0 C191.233,0 193.742,1.038 195.593,2.888 C197.443,4.739 198.481,7.247 198.481,9.865 L198.468,98.52 L287.085,98.508 C289.701,98.508 292.21,99.546 294.061,101.395 C295.912,103.247 296.95,105.754 296.95,108.371 L296.938,188.591 C296.937,194.036 292.523,198.451 287.078,198.451 L198.449,198.467 L198.435,287.125 C198.434,292.57 194.02,296.985 188.575,296.985 L108.388,297 Z" id={this.props.authed.user_id ? "Shape" : "Locked"}></path>
                   </g>
               </g>
             </svg>

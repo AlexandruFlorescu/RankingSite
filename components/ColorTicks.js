@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   text-decoration: none;
   width:100px;
   height:77px;
-  color: ${props => props.theme.color};;
+  color: ${props => props.theme.color};
   background-color:white;
   box-shadow: 0px 3px 3px 2px rgba(0,0,0,.3);
   border-top: 15px solid ${props => props.theme.color};

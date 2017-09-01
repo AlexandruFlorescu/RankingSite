@@ -21,7 +21,26 @@ const Sign = styled.button`
   }
 
   &.marked {
-    background-color: red;
+  }
+
+  &.locked{
+    background-color: black;
+  }
+  & .tooltip{
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+
+  }
+
+  &.locked{
   }
   `;
 

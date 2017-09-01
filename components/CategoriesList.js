@@ -38,6 +38,7 @@ class CategoriesList extends Component{
                           deleteItem = {this.props.deleteItem}
                           router = {this.props.router}
                           users={this.props.users}
+                          authed={this.props.authed}
                           /> )}
       </DashboardWrapper>
     )

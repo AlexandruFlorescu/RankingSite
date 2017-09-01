@@ -8,7 +8,7 @@ import Sign from './UIElements/Sign'
 import CommentsSection from './CommentsSection'
 
 const Table = styled.table`
-  width: 100%;
+  width: calc(100% - 1px);
   border-collapse: collapse;
   border-spacing: 0 5px;
 `;
@@ -134,16 +134,19 @@ class ItemsRank extends Component{
                         <Td>
                           {item.voted_by.indexOf(this.props.authed.user_id) > -1 ? [<FW>{item.score}</FW>, <Sign onClick={this.devote.bind(this, item)}>b</Sign>]
                         :  [
-                                                                                      <Sign onClick={this.increment.bind(this, item)}>+</Sign>,
+                                                                                      <Sign className={!this.props.authed.user_id && "locked"} onClick={this.props.authed.user_id && this.increment.bind(this, item)}>+</Sign>,
                                                                                       <FW>{item.score}</FW>,
-                                                                                      <Sign onClick={this.decrement.bind(this, item)}>-</Sign>,
+                                                                                      <Sign className={!this.props.authed.user_id && "locked"} onClick={this.props.authed.user_id && this.decrement.bind(this, item)}>-</Sign>,
                                                                                     ]}
                           </Td>
                         <Td><SImg className='item' src={item.image}/></Td>
                         <Td className="cap title">{item.name}</Td>
                         <Td className="cap">{item.author}</Td>
                         <Td>{item.description}</Td>
-                        <Td><Sign onClick={this.deleteItem.bind(this, item)}>D</Sign>
+                        <Td><Sign className={this.props.category ? this.props.authed.user_id != this.props.category.owner && "locked" : 'locked' }
+                                  onClick={this.props.category ? this.props.authed.user_id==this.props.category.owner && this.deleteItem.bind(this, item) : ''}>D</Sign>
+                            <Sign className={this.props.category ? this.props.authed.user_id != this.props.category.owner && "locked" : 'locked' }
+                                  onClick={this.props.category ? this.props.authed.user_id==this.props.category.owner && this.deleteItem.bind(this, item) : ''}>E</Sign>
                             <Sign onClick={this.showComments.bind(this, this.i)}>C</Sign></Td>
                       </Tr>,
                       <Tr className='comments ' id={this.state.toggles.indexOf(this.i) > -1 && "expanded" }>

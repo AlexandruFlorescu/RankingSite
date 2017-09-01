@@ -110,6 +110,7 @@ class CommentsSection extends Component{
   }
 
   render() {
+    console.log(this.props.authed);
     return <CommentsWrapper id={this.props.id}>
       {this.props.posts.map(post=>{
         let user = this.props.users.find(user=>user.user_id == post.writer);
@@ -121,20 +122,23 @@ class CommentsSection extends Component{
                 </Profile>
                 <CommentAndActions>
                   <Comment>{post.text}</Comment>
-                  <Sign onClick={this.delete.bind(this, post)}>D</Sign>
+                  <Sign className={user.user_id==this.props.authed.user_id ? '' : "locked"} onClick={user.user_id==this.props.authed.user_id && this.delete.bind(this, post)}>D</Sign>
                 </CommentAndActions>
               </Line> })}
+        {this.props.authed.picture &&
           <Line>
             <Profile>
               <Img src={this.props.authed.picture} />
               <br/>
               {this.props.authed.nickname}
             </Profile>
-            <Form>
+           <Form>
               <TextArea value={this.state.comment} onChange={this.handleChange.bind(this)}/>
               <Button onClick={this.props.postComment.bind(this, this.props.item, this.state.comment)}> POST </Button>
             </Form>
+
           </Line>
+          }
         </CommentsWrapper>;
   }
 }

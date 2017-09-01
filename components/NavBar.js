@@ -12,7 +12,7 @@ import Home from '../assets/home.svg';
 import Login from '../assets/login.svg';
 import Contact from '../assets/contact.svg';
 import Profile from '../assets/profile.svg';
-import Carma from '../assets/carma.svg';
+import NumberedList from '../assets/numbered-list.svg';
 
 const NavWrapper = styled.div`
   position: fixed;
@@ -47,17 +47,13 @@ class NavBar extends Component{
     return (
     <NavWrapper>
         <ColorTicks changeColor={this.props.actions.changeColor}></ColorTicks>
-      {this.props.auth.isAuthenticated() && <Divider></Divider> }
-        {this.props.auth.isAuthenticated() && <MyLink to='/userProfile'><NavButton background={Profile}> Profile </NavButton> </MyLink> }
       <Divider></Divider>
-        <MyLink to='/'> <NavButton background={Home}> Home </NavButton> </MyLink>
+        <MyLink to='/getItems'><NavButton background={NumberedList}> All Items </NavButton> </MyLink>
       <Divider></Divider>
-        <MyLink to='/categories'> <NavButton background={Carma}> Categories </NavButton> </MyLink>
+        <MyLink to='/categories'> <NavButton background={Home}> Categories </NavButton> </MyLink>
       <Divider></Divider>
         {this.props.auth.isAuthenticated() ? <MyLink to='#'><NavButton background={Login} onClick={this.logOut.bind(this)}> Logoff </NavButton> </MyLink>
       : <MyLink to='#'><NavButton background={Login} onClick={this.logIn.bind(this)}> Login </NavButton> </MyLink> }
-      <Divider></Divider>
-        <MyLink to='/getItems'><NavButton background={Contact}> All Items </NavButton> </MyLink>
       <Divider></Divider>
         <MyLink to='/Contact'><NavButton background={Contact}> Contact </NavButton> </MyLink>
     </NavWrapper>
@@ -68,3 +64,10 @@ export default NavBar
 
 // <Divider></Divider>
 // <MyLink to='/crewsList'><NavButton background={Carma}> Crews </NavButton> </MyLink>
+
+// {this.props.auth.isAuthenticated() && <Divider></Divider> }
+// {this.props.auth.isAuthenticated() && <MyLink to='/userProfile'><NavButton background={Profile}> Profile </NavButton> </MyLink> }
+// <Divider></Divider>
+
+// <MyLink to='/'> <NavButton background={Home}> Home </NavButton> </MyLink>
+// <Divider></Divider>

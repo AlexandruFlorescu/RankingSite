@@ -133,8 +133,8 @@ class CategoryCard extends Component{
             <Divider></Divider>
             <CardWrapper>
               <Button onClick={this.view.bind(this)}>View rankings</Button>
-              <Button onClick={this.show.bind(this)}>Add Item</Button>
-              <Button onClick={this.delete.bind(this)}>Delete</Button>
+              <Button className={!this.props.authed.user_id && 'locked'} onClick={this.props.authed.user_id && this.show.bind(this)}>Add Item</Button>
+              <Button className={!(this.props.authed.user_id==this.props.category.owner) && 'locked'} onClick={this.props.authed.user_id==this.props.category.owner && this.delete.bind(this)}>Delete</Button>
               {this.state.show &&
               <Modal
                 show={this.show.bind(this)}
