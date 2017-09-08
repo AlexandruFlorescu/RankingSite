@@ -105,12 +105,6 @@ class CategoryCard extends Component{
   }
 
   view() {
-    // this.props.router.push({
-    //     pathname: '/getItems',
-    //     query: { category: this.props.category._id }
-    //   })
-    // window.location = '/getItems/' + this.props.category._id;
-    // console.log(this.context.router);
     history.push({
         pathname: '/getItems',
         state: { category: this.props.category._id }

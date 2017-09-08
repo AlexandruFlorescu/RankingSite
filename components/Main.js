@@ -87,11 +87,14 @@ class Main extends Component{
               category = {this.props.location.state && this.props.categories.find(cat =>cat._id === this.props.location.state.category)}
               users={this.props.users}
               items = {this.props.items}
+              color = {this.props.ui.color}
+              posts ={this.props.posts}
+
               voteItem = {this.props.actions.voteItem}
               deVoteItem = {this.props.actions.deVoteItem}
               cleanItem = {this.props.actions.cleanItem}
               deleteItem = {this.props.actions.deleteItem}
-              posts ={this.props.posts}
+              updateItem = {this.props.actions.updateItem}
               addPost = {this.props.actions.addPost}
               deletePost = {this.props.actions.deletePost}
               >

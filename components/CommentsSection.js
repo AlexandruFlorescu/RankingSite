@@ -136,7 +136,6 @@ class CommentsSection extends Component{
               <TextArea value={this.state.comment} onChange={this.handleChange.bind(this)}/>
               <Button onClick={this.props.postComment.bind(this, this.props.item, this.state.comment)}> POST </Button>
             </Form>
-
           </Line>
           }
         </CommentsWrapper>;

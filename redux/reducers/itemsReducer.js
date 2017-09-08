@@ -18,6 +18,12 @@ let itemsReducer = (items = [], action) => {
     case c.DELETE_ITEM:
       return items.filter(item=>action.payload !== item);
 
+    case c.UPDATE_ITEM:
+      return items.map(item=> {
+        return item._id === action.payload._id ? {...item,name: action.payload.name, author: action.payload.author,
+                                                          image: action.payload.image, description: action.payload.description } : item
+      })
+
     case c.VOTE_ITEM:
       return items.map( item => {
         return item._id === action.payload.item._id ? {...item, score: item.score + action.payload.score, votes_count: item.votes_count+1,

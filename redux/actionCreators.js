@@ -224,6 +224,22 @@ let actions = {
     //         payload: {item: item, userId: userId, score: score}});
           }
   },
+  updateItem: function(item) {
+    return dispatch => {
+      fetch('/api/updateItem', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('manageToken'),
+        },
+        body: JSON.stringify(item)
+      }).then(resp => resp.json() )
+      .then(respJson => dispatch({type: c.UPDATE_ITEM,
+                                  payload: item})
+          )
+    }
+  },
 //POSTS
   initializePosts: function(){
     return dispatch=>{

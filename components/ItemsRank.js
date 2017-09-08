@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { lighten } from 'polished'
 import StrippedContainer from './UIElements/StrippedContainer';
 import Sign from './UIElements/Sign'
+import Modal from './Modal'
+import ItemForm from './ItemForm'
 
 import CommentsSection from './CommentsSection'
 
@@ -11,8 +13,8 @@ const Table = styled.table`
   width: calc(100% - 1px);
   border-collapse: collapse;
   border-spacing: 0 5px;
-`;
-
+  overflow: y;
+ `;
 const Tr = styled.tr`
   min-height : 70px;
   height: 70px;
@@ -45,7 +47,7 @@ const Tr = styled.tr`
   &.comments#expanded {
     display: table-row;
   }
-`;
+ `;
 const Td = styled.td`
   text-align: center;
   vertical-align: middle;
@@ -65,9 +67,10 @@ const Td = styled.td`
   &.title{
     font-size: 120%;
   }
-`;
-// color: white;
-// background-color: ${props=>props.theme.color};
+ `;
+const Desc = styled.div`
+  padding: 7px;
+ `;
 const SImg = styled.img`
   background-color: transparent;
   width: 65px;
@@ -83,14 +86,17 @@ class ItemsRank extends Component{
   constructor(props){
     super(props);
     this.state = {
-      toggles: []
+      toggles: [],
+      show: false,
+      item: null
     }
   }
+
+  //Metode de votare
   devote(item){
     let myVote = item.votes.find(vote => {console.log(vote);return vote.user == this.props.authed.user_id});
     this.props.deVoteItem(item, myVote);
   }
-
   increment(item) {
     if(item.voted_by.indexOf(this.props.authed.user_id) == -1)
       this.props.voteItem(item, this.props.authed.user_id, 1);
@@ -101,29 +107,38 @@ class ItemsRank extends Component{
         this.props.voteItem(item, this.props.authed.user_id, -1);
   }
 
+  //Actiuni pe item
   deleteItem(item){
     this.props.deleteItem(item);
     this.props.posts.forEach(post => {if(post.item==item._id) this.props.deletePost(post)} );
   }
+  editItem(item){
+    this.setState({show:!this.state.show});
+    this.setState({item:item});
+  }
 
+  //Comentarii
+  hide(){
+    this.setState({show: false});
+  }
   showComments(item){
-    console.log(this.state);
+    // console.log(this.state);
     if(this.state.toggles.indexOf(item) > -1)
       this.setState({ toggles: this.state.toggles.filter(i => i !== item) })
     else this.setState({toggles: [...this.state.toggles, item] });
   }
-
   postComment(item, text){
-    console.log(this.props);
+    // console.log(this.props);
     this.props.addPost({'item':item._id, 'writer':this.props.authed.user_id, 'text': text})
   }
 
   render(){
-    console.log(this.props.posts);
     this.i=0;
-    var myitems = this.props.category ? this.props.items.filter(a=> a.category == this.props.category._id) : this.props.items;
+    var myitems = !this.props.category ? this.props.items :
+      this.props.items.filter(a=> a.category == this.props.category._id);
     myitems.sort((a,b)=>{return b.score - a.score;} );
     var header = this.props.category ? this.props.category.name : 'Items Ranking'
+    console.log(myitems);
     return <StrippedContainer header={header}>
       <Table>
           {myitems.map( (item) =>
@@ -132,21 +147,21 @@ class ItemsRank extends Component{
                       <Tr>
                         <Td className="score">#{this.i}</Td>
                         <Td>
-                          {item.voted_by.indexOf(this.props.authed.user_id) > -1 ? [<FW>{item.score}</FW>, <Sign onClick={this.devote.bind(this, item)}>b</Sign>]
-                        :  [
-                                                                                      <Sign className={!this.props.authed.user_id && "locked"} onClick={this.props.authed.user_id && this.increment.bind(this, item)}>+</Sign>,
-                                                                                      <FW>{item.score}</FW>,
-                                                                                      <Sign className={!this.props.authed.user_id && "locked"} onClick={this.props.authed.user_id && this.decrement.bind(this, item)}>-</Sign>,
-                                                                                    ]}
+                          {item.voted_by.indexOf(this.props.authed.user_id) > -1
+                        ? [<FW>{item.score}</FW>, <Sign onClick={this.devote.bind(this, item)}>b</Sign>]
+                        :  [<Sign className={!this.props.authed.user_id && "locked"} onClick={this.props.authed.user_id && this.increment.bind(this, item)}>+</Sign>,
+                            <FW>{item.score}</FW>,
+                            <Sign className={!this.props.authed.user_id && "locked"} onClick={this.props.authed.user_id && this.decrement.bind(this, item)}>-</Sign>,
+                              ]}
                           </Td>
                         <Td><SImg className='item' src={item.image}/></Td>
                         <Td className="cap title">{item.name}</Td>
                         <Td className="cap">{item.author}</Td>
-                        <Td>{item.description}</Td>
+                        <Td><Desc>{item.description}</Desc></Td>
                         <Td><Sign className={this.props.category ? this.props.authed.user_id != this.props.category.owner && "locked" : 'locked' }
                                   onClick={this.props.category ? this.props.authed.user_id==this.props.category.owner && this.deleteItem.bind(this, item) : ''}>D</Sign>
                             <Sign className={this.props.category ? this.props.authed.user_id != this.props.category.owner && "locked" : 'locked' }
-                                  onClick={this.props.category ? this.props.authed.user_id==this.props.category.owner && this.deleteItem.bind(this, item) : ''}>E</Sign>
+                                  onClick={this.props.category ? this.props.authed.user_id==this.props.category.owner && this.editItem.bind(this, item) : ''}>E</Sign>
                             <Sign onClick={this.showComments.bind(this, this.i)}>C</Sign></Td>
                       </Tr>,
                       <Tr className='comments ' id={this.state.toggles.indexOf(this.i) > -1 && "expanded" }>
@@ -163,7 +178,17 @@ class ItemsRank extends Component{
                    ])}
         )}
       </Table>
+      {this.state.show && <Modal
+        show={this.hide.bind(this)}
+        color={this.props.color}
+        header={'Add new item in ' + this.props.category.name}>
+          <ItemForm category={this.props.category}
+                    updateItem={this.props.updateItem}
+                    item={this.state.item}
+                    show={this.hide.bind(this)}>
 
+          </ItemForm>
+      </Modal>}
     </StrippedContainer>
   }
 }

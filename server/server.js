@@ -134,6 +134,16 @@ app.post('/api/devoteItem', checkJwt, function(req, res) {
     res.json(item);
   })
 })
+app.post('/api/updateItem', checkJwt, function(req, res) {
+  Items.updateItem(req.body, (err, item) => {
+    if(err) {
+      throw err;
+      res.json(err);
+    }
+    // console.log(item);
+    res.json(item);
+  })
+})
 app.post('/api/cleanItem', checkJwt, function(req, res) {
   Items.cleanItem(req.body, (err, item) => {
     if(err) {

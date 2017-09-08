@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import {darken} from 'polished';
 import classnames from 'classnames';
 
 const Button = styled.button`
@@ -30,7 +31,8 @@ box-shadow: 0px 2px 3px 3px rgba(0,0,0,0.3);
 }
 
 &.locked{
-  background: black;
+  background: ${props=> darken(0.2, props.theme.color)};
+  color: white;
   transform: scale(0.95);
 }
 `;

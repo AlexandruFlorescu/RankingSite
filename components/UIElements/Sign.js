@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import classnames from 'classnames';
-import { lighten } from 'polished'
+import { lighten, darken } from 'polished'
 
 const Sign = styled.button`
   width: 20px;
@@ -24,7 +24,8 @@ const Sign = styled.button`
   }
 
   &.locked{
-    background-color: black;
+    background-color: ${props=> props.theme.color == 'green' || props.theme.color == 'indigo' ? darken(0.15, props.theme.color) : darken(0.3, props.theme.color)};
+    color: white;
   }
   & .tooltip{
     visibility: hidden;

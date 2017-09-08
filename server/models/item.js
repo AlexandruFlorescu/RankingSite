@@ -60,6 +60,10 @@ module.exports.findItem = (item,callback) => {
   Item.find(item, callback);
 }
 
+module.exports.updateItem = (payload, callback) => {
+  Item.update({_id: `${payload._id}`}, {$set: {name: payload.name, author: payload.author, image: payload.image, description: payload.description}}, callback);
+}
+
 module.exports.cleanItem = (payload,callback) => {
   Item.update({_id : payload.item}, {$set: {voted_by: [], votes: [], votes_count:0, score: 0}}, callback);
 }

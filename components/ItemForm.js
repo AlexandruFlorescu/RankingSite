@@ -53,7 +53,9 @@ class CategoryForm extends Component {
       image:'',
       description:'',
       votes_count:0,
+      votes: [],
       voted_by:[],
+
     }
   }
 
@@ -63,29 +65,38 @@ class CategoryForm extends Component {
 
   componentWillMount(){
     this.setState({category: this.props.category._id});
+    if(this.props.item){
+      this.setState({name: this.props.item.name})
+      this.setState({author: this.props.item.author})
+      this.setState({image: this.props.item.image})
+      this.setState({description: this.props.item.description})
+      // this.setState({_id: this.props.item._id})
+    }
   }
 
   submit(){
-    this.props.addItem(this.state);
+    this.props.addItem ? this.props.addItem(this.state)
+    : this.props.updateItem({name:this.state.name, author:this.state.author, description:this.state.description, _id:this.props.item._id,image:this.state.image});
     this.props.show();
     console.log(this.state);
   }
 
   render(){
-    // console.log(this.props.authed);
+    console.log(this.props);
+    // console.log(this.state);
     return (
             <ColumnWrapper>
               <Label> Name: </Label>
-              <Input name="name" onChange={this.handleChange.bind(this)}/>
+              <Input name="name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
 
               <Label> Author: </Label>
-              <Input name="author" onChange={this.handleChange.bind(this)}/>
+              <Input name="author" onChange={this.handleChange.bind(this)} value={this.state.author}/>
 
               <Label> Image: </Label>
-              <Input name="image" onChange={this.handleChange.bind(this)}/>
+              <Input name="image" onChange={this.handleChange.bind(this)} value={this.state.image}/>
 
               <Label> Description: </Label>
-              <TextArea name="description" onChange={this.handleChange.bind(this)}/>
+              <TextArea name="description" onChange={this.handleChange.bind(this)} value={this.state.description}/>
 
               <Button onClick={this.submit.bind(this)}>Submit</Button>
             </ColumnWrapper>
