@@ -138,7 +138,7 @@ class ItemsRank extends Component{
       this.props.items.filter(a=> a.category == this.props.category._id);
     myitems.sort((a,b)=>{return b.score - a.score;} );
     var header = this.props.category ? this.props.category.name : 'Items Ranking'
-    console.log(myitems);
+    // console.log(myitems);
     return <StrippedContainer header={header}>
       <Table>
           {myitems.map( (item) =>

@@ -9,6 +9,7 @@ import ColorTicks from './ColorTicks'
 
 //SVGs
 import Home from '../assets/home.svg';
+// import Logo from '../assets/LOGO.png';
 import Login from '../assets/login.svg';
 import Contact from '../assets/contact.svg';
 import Profile from '../assets/profile.svg';
@@ -70,4 +71,7 @@ export default NavBar
 // <Divider></Divider>
 
 // <MyLink to='/'> <NavButton background={Home}> Home </NavButton> </MyLink>
+// <Divider></Divider>
+
+// <MyLink to='/'><NavButton background={Logo}> </NavButton></MyLink>
 // <Divider></Divider>

@@ -34,23 +34,34 @@ class ContactForm extends Component {
     this.state = {}
   }
 
+  handleChange(e){
+    this.setState({[e.target.name]:e.target.value})
+  }
+
   contact(){
-    console.log('dasdasd');
+    fetch('/api/sendEmail', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        },
+      body: JSON.stringify(this.state)
+    }).then(resp => resp.json())
+    this.setState({name: '', subject: '', text: ''});
   }
 
   render(){
     return (
-          <StrippedContainer header=" I am looking forward to hearing from you! :)">
-
+          <StrippedContainer header="I am looking forward to hearing from you! :)">
               <ColumnWrapper>
                 <Label> What do they call you: </Label>
-                <Input name="name" />
+                <Input name="name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
 
-                <Label> Email adress: </Label>
-                <Input name="email" />
+                <Label> What is this about: </Label>
+                <Input name="subject" onChange={this.handleChange.bind(this)} value={this.state.subject}/>
 
                 <Label> Shoot!: </Label>
-                <TextArea name="mai multe"/>
+                <TextArea name="text" onChange={this.handleChange.bind(this)} value={this.state.text}/>
 
                 <Button onClick={this.contact.bind(this)}>Send message</Button>
               </ColumnWrapper>
@@ -59,3 +70,6 @@ class ContactForm extends Component {
 }
 
 export default ContactForm;
+
+/**/
+// I am looking forward to hearing from you! :)

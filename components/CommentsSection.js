@@ -109,8 +109,13 @@ class CommentsSection extends Component{
     this.props.deletePost(post);
   }
 
+  postComment(){
+    this.props.postComment(this.props.item, this.state.comment);
+    this.setState({comment:''})
+  }
+
   render() {
-    console.log(this.props.authed);
+    // console.log(this.props.authed);
     return <CommentsWrapper id={this.props.id}>
       {this.props.posts.map(post=>{
         let user = this.props.users.find(user=>user.user_id == post.writer);
@@ -134,7 +139,7 @@ class CommentsSection extends Component{
             </Profile>
            <Form>
               <TextArea value={this.state.comment} onChange={this.handleChange.bind(this)}/>
-              <Button onClick={this.props.postComment.bind(this, this.props.item, this.state.comment)}> POST </Button>
+              <Button onClick={this.postComment.bind(this, this.props.item, this.state.comment)}> POST </Button>
             </Form>
           </Line>
           }

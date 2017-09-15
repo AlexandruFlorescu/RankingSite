@@ -35,6 +35,18 @@ const checkJwt = jwt({
   algorithms: ['RS256']
 })
 
+//MAIL
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'credsicercetez',
+    pass: 'Crack9eggs'
+  }
+});
+
+//DB
 Categories = require('./models/category.js');
 Items = require('./models/item.js');
 Posts = require('./models/post.js');
@@ -182,6 +194,26 @@ app.post('/api/deletePost', checkJwt, function(req, res) {
     }
     res.json(post);
   })
+})
+
+app.post('/api/sendEmail', function(req, res) {
+
+  var mailOptions = {
+    from: 'credsicercetez@gmail.com',
+    to: 'acdc152@gmail.com',
+    subject: req.body.subject,
+    text: req.body.text
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      res.json(error);
+    } else {
+    res.json(info.response);
+    }
+  })
+
+
 })
 
 // app.post('/api/alterCrew', checkJwt, function(req, res){

@@ -86,8 +86,8 @@ class UserCard extends Component{
             <UpperWrap>
               <Img src={this.props.user.picture}></Img>
               <RightWrap>
-                <Header> <Label background={Honor}> Honor:</Label> <Highlight>{this.props.user.user_metadata.honor}</Highlight> </Header>
-                <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>{this.props.user.user_metadata.reputation}</Highlight></Header>
+                <Header> <Label background={Honor}> Honor:</Label> <Highlight>EMPTY</Highlight> </Header>
+                <Header> <Label background={Reputation}> Reputation:</Label> <Highlight>EMPTY</Highlight></Header>
               </RightWrap>
             </UpperWrap>
             <Divider></Divider>

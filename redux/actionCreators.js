@@ -289,6 +289,7 @@ let actions = {
             )
     }
   },
+  
   changeColor: function(color){
     return {type: c.CHANGE_COLOR, payload: color};
   },
